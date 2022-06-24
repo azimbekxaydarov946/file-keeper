@@ -1,4 +1,63 @@
-<x-guest-layout>
+@extends('layouts.auth')
+@section('content')
+
+<div class="authentication">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <form class="card auth_form" method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="header">
+                        <img class="logo" src="assets/images/logo.svg" alt="">
+                        <h5>Sign Up</h5>
+                        {{-- <span>Register a new membership</span> --}}
+                    </div>
+                    <div class="body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Name" name="name" :value="old('name')" required autofocus autocomplete="name">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" placeholder="Email" type="email" name="email" :value="old('email')" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" placeholder="Password" type="password" name="password" required autocomplete="new-password" >
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" placeholder="Password Confirmation" type="password" name="password_confirmation" required autocomplete="new-password" >
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Register</button>
+                        <div class="signin_with mt-3">
+                            <a class="link" href="{{route('login')}}">Log in</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                <div class="card">
+                    <img src="assets/images/signup.svg" alt="Sign Up" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
+
+{{-- <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -57,4 +116,4 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}
