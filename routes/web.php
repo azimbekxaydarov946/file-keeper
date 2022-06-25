@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-        Route::get('/', function () {
-            return view('home');
-        });
+        Route::get('/',[HomeController::class,'index'])->name('home');
+        Route::get('/create',[HomeController::class,'create'])->name('home.create');
+        Route::post('/store',[HomeController::class,'store'])->name('home.store');
+        Route::get('/dowload/{id}',[HomeController::class,'dowload'])->name('home.dowload');
+        Route::get('/edit/{id}',[HomeController::class,'edit'])->name('home.edit');
+        Route::put('/update/{id}',[HomeController::class,'update'])->name('home.update');
+        Route::delete('/delete/{id}',[HomeController::class,'destroy'])->name('home.delete');
 });

@@ -24,8 +24,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'birthday',
         'email',
+        'address',
+        'department_id',
         'password',
     ];
 
@@ -58,4 +62,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id');
+    }
+
+    public function home()
+    {
+        return $this->hasMany(Home::class,'user_id');
+    }
 }

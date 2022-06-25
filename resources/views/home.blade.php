@@ -27,62 +27,113 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card widget_2">
+                    <div class="body">
+                        <h6>Jami filelar</h6>
+                        <h2>20 <small class="info">of 1Tb</small></h2>
+                        {{-- <small>2% higher than last month</small> --}}
+                        <div class="progress">
+                            <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card widget_2 ">
+                    <div class="body">
+                        <h6>Shaxsiy file</h6>
+                        <h2>12% <small class="info">of 100</small></h2>
+                        {{-- <small>6% higher than last month</small> --}}
+                        <div class="progress">
+                            <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 38%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card widget_2 ">
+                    <div class="body">
+                        <h6>Ish file</h6>
+                        <h2>39 <small class="info">of 100</small></h2>
+                        {{-- <small>Total Registered email</small> --}}
+                        <div class="progress">
+                            <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 39%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card widget_2 ">
+                    <div class="body">
+                        <h6>Maxsus file</h6>
+                        <h2>8 <small class="info">of 10</small></h2>
+                        {{-- <small>Total Registered Domain</small> --}}
+                        <div class="progress">
+                            <div class="progress-bar l-green" role="progressbar" aria-valuenow="89" aria-valuemin="0"
+                                aria-valuemax="100" style="width: 89%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="row clearfix">
+    <div class="row clearfix" style="margin-left: 1%;margin-top: -4%">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
                 <div class="header">
-
                 </div>
                 <div class="body">
+                    <a href="{{ route('home.create') }}" class="btn btn-raised btn-primary btn-round waves-effect"
+                        style="color: white">Create</a>
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
-                                <tr >
-                                    <th>#</th>
-                                    <th>FIRST NAME</th>
-                                    <th>LAST NAME</th>
-                                    <th>USERNAME</th>
+                            <thead class="thead-dark">
+                                <tr align="center">
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Tite</th>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Larry</td>
-                                    <td>Jellybean</td>
-                                    <td>@lajelly</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Larry</td>
-                                    <td>Kikat</td>
-                                    <td>@lakitkat</td>
-                                </tr>
+                                @foreach ($home as $item)
+                                    <tr align="center">
+                                        <th>{{ $item->id }}</th>
+                                        <td>{{ $item->teacher->last_name }} {{ $item->teacher->first_name }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->date }}</td>
+                                        <td>{{ $item->category->name }}</td>
+                                        <td>{{ $item->status ? 'Special document' : 'Simple document' }}</td>
+                                        <td style="width: 240px; display: flex; justify-content: space-between">
+                                            <a href="{{route('home.edit',['id'=>$item->id])}}" class="btn btn-raised btn-success ">Update</a>
+                                            <form action="{{route('home.delete',['id'=>$item->id])}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-raised btn-danger" type="submit">Delete</button>
+                                            </form>
+                                            <a class="btn btn-raised btn-warning  btn-icon float-right"
+                                                href="{{ route('home.dowload',['id'=>$item->id]) }}"><span class="ti-import"></span></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 @endsection
