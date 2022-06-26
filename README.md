@@ -20,4 +20,10 @@
 
 <code>php artisan migrate:fresh</code>
 
+<code>php artisan db:seed</code>
 <code>php artisan optimize</code>
+<code>php artisan serve</code>
+<h3><b>Authorization:</b></h3><br/>
+    
+    Login: admin@gmail.com
+    Password: 1234
