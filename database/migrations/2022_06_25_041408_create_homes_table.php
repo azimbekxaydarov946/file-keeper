@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->string('file');
+            $table->string('title')->nullable();
+            $table->string('file')->nullable();
+            $table->string('size')->nullable();
+            $table->string('type')->nullable();
             $table->date('date')->default(date('Y-m-d'));
             $table->integer('category_id');
             $table->boolean('status')->default(0)->comment('0 - oddiy hujjat 1 - maxsus hujjat');

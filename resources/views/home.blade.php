@@ -1,89 +1,95 @@
 @extends('layouts.base')
 @section('content')
-    <!-- Main Content -->
-    <section class="content" style="margin-left: 2%; margin-right: 1%">
-        <div class="">
-            <div class="block-header">
-                <div class="row">
-                    <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2>By Azamat</h2>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="index.html"> Teacher</a></li>
-                            <li class="breadcrumb-item"><a href="index.html"> Department</a>
-                            </li>
-                        </ul>
+<!-- Main Content -->
+<section class="content" style="margin-left: 2%; margin-right: 1%">
+    <div class="">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>By Azamat</h2>
+                    @if (auth()->user()->is_role==1)
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.html"> Category</a>
+                        <li class="breadcrumb-item"><a href="index.html"> Teacher</a></li>
+                        <li class="breadcrumb-item"><a href="index.html"> Department</a>
+                        <li class="breadcrumb-item"><a href="index.html"> Fakulty</a>
+                        <li class="breadcrumb-item"><a href="index.html"> Unversity</a>
+                        </li>
+                    </ul>
+                    @endif
+                    {{-- <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button> --}}
 
-                        {{-- <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button> --}}
-
-                    </div>
-                    <div class="col-lg-5 col-md-6 col-sm-12">
-                        <form action="{{ asset('logout') }}" method="POST">
-                            @csrf
-                            @method('post')
-                            <button class="btn btn-primary btn-icon float-right " type="submit"><i
-                                    class="zmdi zmdi-power"></i></button>
-                        </form>
-                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <form action="{{ asset('logout') }}" method="POST">
+                        @csrf
+                        @method('post')
+                        <button class="btn btn-primary btn-icon float-right " type="submit"><i
+                                class="zmdi zmdi-power"></i></button>
+                    </form>
                 </div>
             </div>
-
         </div>
-        <div class="row clearfix">
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card widget_2">
-                    <div class="body">
-                        <h6>Jami filelar</h6>
-                        <h2>20 <small class="info">of 1Tb</small></h2>
-                        {{-- <small>2% higher than last month</small> --}}
-                        <div class="progress">
-                            <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 45%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card widget_2 ">
-                    <div class="body">
-                        <h6>Shaxsiy file</h6>
-                        <h2>12% <small class="info">of 100</small></h2>
-                        {{-- <small>6% higher than last month</small> --}}
-                        <div class="progress">
-                            <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 38%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card widget_2 ">
-                    <div class="body">
-                        <h6>Ish file</h6>
-                        <h2>39 <small class="info">of 100</small></h2>
-                        {{-- <small>Total Registered email</small> --}}
-                        <div class="progress">
-                            <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 39%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card widget_2 ">
-                    <div class="body">
-                        <h6>Maxsus file</h6>
-                        <h2>8 <small class="info">of 10</small></h2>
-                        {{-- <small>Total Registered Domain</small> --}}
-                        <div class="progress">
-                            <div class="progress-bar l-green" role="progressbar" aria-valuenow="89" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 89%;"></div>
-                        </div>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card widget_2">
+                <div class="body">
+                    <h6>Jami filelar</h6>
+                    <h2>{{$total}}</h2>
+                    {{-- <small>2% higher than last month</small> --}}
+                    <div class="progress">
+                        <div class="progress-bar l-amber" role="progressbar" aria-valuenow="{{$total}}" aria-valuemin="0"
+                            aria-valuemax="100" style="width: {{$total}}%;"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card widget_2 ">
+                <div class="body">
+                    <h6>Shaxsiy file</h6>
+                    <h2>{{$personal}}</h2>
+                    {{-- <small>6% higher than last month</small> --}}
+                    <div class="progress">
+                        <div class="progress-bar l-blue" role="progressbar" aria-valuenow="{{$personal}}" aria-valuemin="0"
+                            aria-valuemax="100" style="width: {{$personal}}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card widget_2 ">
+                <div class="body">
+                    <h6>Ish file</h6>
+                    <h2>{{$work}}</h2>
+                    {{-- <small>Total Registered email</small> --}}
+                    <div class="progress">
+                        <div class="progress-bar l-purple" role="progressbar" aria-valuenow="{{$work}}" aria-valuemin="0"
+                            aria-valuemax="100" style="width: {{$work}}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card widget_2 ">
+                <div class="body">
+                    <h6>Maxsus file</h6>
+                    <h2>{{$special}}</h2>
+                    {{-- <small>Total Registered Domain</small> --}}
+                    <div class="progress">
+                        <div class="progress-bar l-green" role="progressbar" aria-valuenow="{{$special}}" aria-valuemin="0"
+                            aria-valuemax="100" style="width: {{$special}}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
     <div class="row clearfix" style="margin-left: 1%;margin-top: -4%">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -101,19 +107,23 @@
                                     <th>Name</th>
                                     <th>Tite</th>
                                     <th>Date</th>
+                                    <th>File Size</th>
+                                    <th>File Type</th>
                                     <th>Category</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($home as $item)
+                                @foreach ($home as $key=>$item)
                                     <tr align="center">
-                                        <th>{{ $item->id }}</th>
+                                        <th>{{ ++$key}}</th>
                                         <td>{{ $item->teacher->last_name }} {{ $item->teacher->first_name }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->category->name }}</td>
+                                        <td>{{$item->size??'0'}} KB</td>
+                                        <td>{{$item->type??'no file'}}</td>
+                                        <td>{{ $item->category->name??'' }}</td>
                                         <td>{{ $item->status ? 'Special document' : 'Simple document' }}</td>
                                         <td style="width: 240px; display: flex; justify-content: space-between">
                                             <a href="{{route('home.edit',['id'=>$item->id])}}" class="btn btn-raised btn-success ">Update</a>

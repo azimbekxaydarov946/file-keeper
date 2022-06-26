@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('birthday');
             $table->string('email')->unique();
             $table->string('address')->nullable();
+            $table->boolean('is_role')->default(false)->comment('1: admin, 0: user');
             $table->string('department_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

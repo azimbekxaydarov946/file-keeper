@@ -14,6 +14,8 @@ class Home extends Model
         'title',
         'file',
         'date',
+        'size',
+        'type',
         'category_id',
         'status',
     ];

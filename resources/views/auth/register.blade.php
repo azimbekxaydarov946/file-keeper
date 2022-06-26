@@ -14,17 +14,18 @@
                     </div>
                     <div class="body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="First Name" name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Last Name" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
                         </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="First Name" name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
+                            </div>
+                        </div>
+
                         <div class="input-group mb-3">
                             <input type="date" class="form-control"  name="birthday" :value="old('birthday')" required autofocus autocomplete="birthday">
                         </div>
