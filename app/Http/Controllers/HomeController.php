@@ -68,9 +68,9 @@ class HomeController extends Controller
             $file->move(public_path('files'), $fileName);
             $data['file'] = $fileName;
         }
-        elseif ($data['title'] == null) {
-            $data['title'] = 'no title';
-        }
+        // elseif ($data['title'] == null) {
+        //     $data['title'] = 'no title';
+        // }
         $data['user_id'] = auth()->user()->id;
         Home::create($data);
         return redirect()->route('home');
@@ -112,9 +112,9 @@ class HomeController extends Controller
                 unlink($file);
             }
         }
-        elseif ($data['title'] == null) {
-            $data['title'] = 'no title';
-        }
+        // elseif ($data['title'] == null) {
+        //     $data['title'] = 'no title';
+        // }
 
         $data['user_id'] = auth()->user()->id;
         $item->update($data);

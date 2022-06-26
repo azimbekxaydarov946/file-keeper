@@ -119,7 +119,7 @@
                                     <tr align="center">
                                         <th>{{ ++$key}}</th>
                                         <td>{{ $item->teacher->last_name }} {{ $item->teacher->first_name }}</td>
-                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->title??'no title'}}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{$item->size??'0'}} KB</td>
                                         <td>{{$item->type??'no file'}}</td>
