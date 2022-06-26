@@ -33,7 +33,7 @@
                     </div>
                 </div>
         </div>
-        <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">Create</button>
+        <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">Update</button>
         </form>
         <a href="{{ route('home') }}" class="btn btn-raised btn-danger btn-round waves-effect"
             style="color: white">Back</a>

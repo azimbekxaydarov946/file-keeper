@@ -37,7 +37,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card widget_2">
                 <div class="body">
-                    <h6>Jami filelar</h6>
+                    <h6>Total files</h6>
                     <h2>{{$total}}</h2>
                     {{-- <small>2% higher than last month</small> --}}
                     <div class="progress">
@@ -50,7 +50,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card widget_2 ">
                 <div class="body">
-                    <h6>Shaxsiy file</h6>
+                    <h6>Personal files</h6>
                     <h2>{{$personal}}</h2>
                     {{-- <small>6% higher than last month</small> --}}
                     <div class="progress">
@@ -63,7 +63,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card widget_2 ">
                 <div class="body">
-                    <h6>Ish file</h6>
+                    <h6>Work files</h6>
                     <h2>{{$work}}</h2>
                     {{-- <small>Total Registered email</small> --}}
                     <div class="progress">
@@ -76,7 +76,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card widget_2 ">
                 <div class="body">
-                    <h6>Maxsus file</h6>
+                    <h6>Special files</h6>
                     <h2>{{$special}}</h2>
                     {{-- <small>Total Registered Domain</small> --}}
                     <div class="progress">
