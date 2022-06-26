@@ -6,7 +6,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>By Azamat</h2>
+                    <h2>{{auth()->user()->first_name}}  {{auth()->user()->last_name}}</h2>
                     @if (auth()->user()->is_role==1)
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
