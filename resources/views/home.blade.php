@@ -127,13 +127,16 @@
                                         <td>{{ $item->status ? 'Special document' : 'Simple document' }}</td>
                                         <td style="width: 240px; display: flex; justify-content: space-between">
                                             <a href="{{route('home.edit',['id'=>$item->id])}}" class="btn btn-raised btn-success ">Update</a>
-                                            <form action="{{route('home.delete',['id'=>$item->id])}}" method="POST">
+                                            <form action="{{route('home.delete',['id'=>$item->id])}}" method="POST" style="{{$item->file? '':'margin-right: 23%'}}">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-raised btn-danger" type="submit">Delete</button>
                                             </form>
+                                            @if ($item->file)
+
                                             <a class="btn btn-raised btn-warning  btn-icon float-right"
-                                                href="{{ route('home.dowload',['id'=>$item->id]) }}"><span class="ti-import"></span></a>
+                                            href="{{ route('home.dowload',['id'=>$item->id]) }}"><span class="ti-import"></span></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
