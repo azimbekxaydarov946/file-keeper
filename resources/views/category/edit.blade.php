@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<title>Category</title>
     <section class="content" style="width: 20%; margin: auto; margin-top: 5%">
         <div class="body">
             <h2 class="card-inside-title">Update</h2>

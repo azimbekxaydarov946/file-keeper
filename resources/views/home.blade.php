@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+<title>Home</title>
 <!-- Main Content -->
 <section class="content" style="margin-left: 2%; margin-right: 1%">
     <div class="">
