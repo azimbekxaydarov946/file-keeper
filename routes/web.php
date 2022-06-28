@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::get('/edit/{id}',[HomeController::class,'edit'])->name('home.edit');
         Route::put('/update/{id}',[HomeController::class,'update'])->name('home.update');
         Route::delete('/delete/{id}',[HomeController::class,'destroy'])->name('home.delete');
+
+        Route::get('/category',[CategoryController::class,'index'])->name('category');
+        Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
+        Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
+        Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+        Route::put('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+        Route::delete('/category/delete/{id}',[CategoryController::class,'destroy'])->name('category.delete');
+
 });

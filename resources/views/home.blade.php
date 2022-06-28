@@ -9,12 +9,12 @@
                     <h2>{{auth()->user()->first_name}}  {{auth()->user()->last_name}}</h2>
                     @if (auth()->user()->is_role==1)
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                        <li class="breadcrumb-item"><a href="index.html"> Category</a>
-                        <li class="breadcrumb-item"><a href="index.html"> Teacher</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('category')}}"> Category</a>
+                        {{-- <li class="breadcrumb-item"><a href="index.html"> Teacher</a></li>
                         <li class="breadcrumb-item"><a href="index.html"> Department</a>
                         <li class="breadcrumb-item"><a href="index.html"> Fakulty</a>
-                        <li class="breadcrumb-item"><a href="index.html"> Unversity</a>
+                        <li class="breadcrumb-item"><a href="index.html"> Unversity</a> --}}
                         </li>
                     </ul>
                     @endif

@@ -13,7 +13,7 @@ class HomeController extends Controller
         $search = request()->input('search')??'';
 
         // dd($search);
-        if (auth()->user()->is_role == false || $search) {
+        if (auth()->user()->is_role == false ) {
 
             $home = Home::with('category', 'teacher')->where('user_id', '=', auth()->user()->id)->where(function($query)  use ($search) {
                 $query->orWhere('title', 'like', '%' . $search . '%')->orWhere('size', 'like', '%' . $search . '%')->orWhere('type', 'like', '%' . $search . '%')->orWhere('date', 'like', '%' . $search . '%')->orWhereHas('category', function($query) use ($search) {
@@ -22,12 +22,27 @@ class HomeController extends Controller
                     $query->where('first_name', 'like', '%' . $search . '%');
                 })->orWhereHas('teacher', function($query) use ($search) {
                     $query->where('last_name', 'like', '%' . $search . '%');
+                })->orWhereHas('category', function($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
                 });
             })->get();
         } else {
-            $home = Home::with('category', 'teacher')->whereHas('teacher', function ($query) {
+            $home = Home::with('category', 'teacher')  ->whereHas('teacher', function ($query) {
                 $query->where('is_role', false);
+            })->where(function($query)  use ($search) {
+                $query->orWhere('title', 'like', '%' . $search . '%')->orWhere('size', 'like', '%' . $search . '%')->orWhere('type', 'like', '%' . $search . '%')->orWhere('date', 'like', '%' . $search . '%')->orWhereHas('category', function($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })->orWhereHas('teacher', function($query) use ($search) {
+                    $query->where('first_name', 'like', '%' . $search . '%');
+                })->orWhereHas('teacher', function($query) use ($search) {
+                    $query->where('last_name', 'like', '%' . $search . '%');
+                })->orWhereHas('category', function($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                });
             })->get();
+         /*    ->whereHas('teacher', function ($query) {
+                $query->where('is_role', false);
+            }); */
         }
         $work = [];
         $personal = [];
