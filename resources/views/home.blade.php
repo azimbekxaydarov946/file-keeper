@@ -99,6 +99,13 @@
                 <div class="body">
                     <a href="{{ route('home.create') }}" class="btn btn-raised btn-primary btn-round waves-effect"
                         style="color: white">Create</a>
+                        <form action="{{route('home')}}" style="display:inline-block; width: 20%;">
+                            <div style="display: flex; justify-content: space-between">
+                                @csrf
+                                <input type="search" class="form-control" style="height: 1%; width: 60%;" name="search"  value="{{isset($search) ? $search : old('search')}}">
+                                <button class="btn btn-raised btn-primary btn-round waves-effect" style="margin: 0" type="submit">Search</button>
+                            </div>
+                        </form>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead class="thead-dark">

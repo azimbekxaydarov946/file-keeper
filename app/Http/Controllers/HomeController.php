@@ -10,9 +10,20 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->is_role == false) {
+        $search = request()->input('search')??'';
 
-            $home = Home::with('category', 'teacher')->where('user_id', '=', auth()->user()->id)->get();
+        // dd($search);
+        if (auth()->user()->is_role == false || $search) {
+
+            $home = Home::with('category', 'teacher')->where('user_id', '=', auth()->user()->id)->where(function($query)  use ($search) {
+                $query->orWhere('title', 'like', '%' . $search . '%')->orWhere('size', 'like', '%' . $search . '%')->orWhere('type', 'like', '%' . $search . '%')->orWhere('date', 'like', '%' . $search . '%')->orWhereHas('category', function($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })->orWhereHas('teacher', function($query) use ($search) {
+                    $query->where('first_name', 'like', '%' . $search . '%');
+                })->orWhereHas('teacher', function($query) use ($search) {
+                    $query->where('last_name', 'like', '%' . $search . '%');
+                });
+            })->get();
         } else {
             $home = Home::with('category', 'teacher')->whereHas('teacher', function ($query) {
                 $query->where('is_role', false);
@@ -37,7 +48,7 @@ class HomeController extends Controller
         $work = count($work) ?? 0;
         $personal = count($personal) ?? 0;
         $total = count($home) ?? 0;
-        return view('home', ['home' => $home, 'work' => $work, 'personal' => $personal, 'total' => $total, 'special' => $special]);
+        return view('home', ['home' => $home, 'work' => $work, 'personal' => $personal, 'total' => $total, 'special' => $special, 'search' => $search]);
     }
 
     public function create()
@@ -52,10 +63,10 @@ class HomeController extends Controller
             'title' => 'nullable|string',
             'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,jpeg,png,exe,zip,rar,7z',
             'date' => 'nullable',
-            'category_id' => 'required',
-            'status' => 'required',
+            'category_id' => 'nullable',
+            'status' => 'nullable'
         ]);
-        $data['date']=$data['date']??date('Y-m-d');
+        $data['date'] = $data['date'] ?? date('Y-m-d');
         if ($request->hasFile('file')) {
 
             $file = $data['file'];
@@ -99,7 +110,7 @@ class HomeController extends Controller
             'category_id' => 'required',
             'status' => 'required',
         ]);
-        $data['date']=$data['date']??date('Y-m-d');
+        $data['date'] = $data['date'] ?? date('Y-m-d');
         if ($request->hasFile('file')) {
             $file = $data['file'];
             $fileName = time() . '.' . $file->getClientOriginalExtension();
