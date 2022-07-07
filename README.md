@@ -6,9 +6,9 @@
 
 <h3><b>Installation steps:</b></h3><br/>
 
-<code>git clone  https://github.com/azimbekxaydarov946/azamat.git</code>
+<code>git clone  https://github.com/azimbekxaydarov946/file-keeper.git</code>
 
-<code>cd azamat</code>
+<code>cd file-keeper</code>
 
 <code>composer update</code>
 
